@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
-export const fetchNumbers = createAsyncThunk('numbers/fetchNumbers', async () => {
+export const fetchNumbers = createAsyncThunk('numbers/fetchNumbersStatus', async () => {
   const { data } = await axios.get('/numbers');
   return data;
 });
@@ -16,6 +16,7 @@ const numbersSlice = createSlice({
   name: 'numbers',
   initialState,
   reducer: {},
+
   extraReducers: {
     [fetchNumbers.pending]: (state) => {
       state.numbers.items = [];
@@ -32,4 +33,4 @@ const numbersSlice = createSlice({
   },
 });
 
-export const numberReducer = numbersSlice.reducer;
+export const numbersReducer = numbersSlice.reducer;
